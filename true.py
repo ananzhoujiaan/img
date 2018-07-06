@@ -11,11 +11,6 @@ class FileEventHandler(FileSystemEventHandler):
         with open('/var/log/img.log','a+') as f:
            # line=event.src_path +"\n"
             f.write(event.src_path+"\n")  
-            os.system("fileline=`tail -n 1 /var/log/img.log|awk -F '/' '{print $3}'`")    
-            os.system("git add /img/$fileline")
-            os.system("git commit -a -m 'add $fileline'")
-            os.system("git push origin master")
-            os.system("echo https://raw.githubusercontent.com/ananzhoujiaan/img/master/$fileline")             
 if __name__ == "__main__":
     observer = Observer()
     event_handler = FileEventHandler()
